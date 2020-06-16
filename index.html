@@ -18,7 +18,7 @@
     function login() {
         alert('进入login');
         var appid = 'wx6d7e24649852fbcf',
-            returnUrl = encodeURI('http://www.scnmgfw.org.cn:8010/server-tripartite/commoditys/index.html');
+            returnUrl = encodeURI('https://liucol.github.io/weixintest/');
 
         axios.get('https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid + '&redirect_uri=' + returnUrl + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect').then(function (response) {
             alert('请求成功');
