@@ -31,7 +31,7 @@
 
         $.ajax({
             type: "GET",
-            url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appid + "&redirect_uri=" + returnUrl +"&response_type='code'&scope='snsapi_base'&state=123'#wechat_redirect'",
+            url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appid + "&redirect_uri=" + returnUrl +"&response_type='code'&scope='snsapi_userinfo'&state=123'#wechat_redirect'",
             dataType: "json",
             success: function (data) {
                 alert("请求响应");
