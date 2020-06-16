@@ -18,7 +18,8 @@
     function login() {
         alert('进入login');
         var appid = 'wx6d7e24649852fbcf',
-            returnUrl = encodeURI('https://liucol.github.io/weixintest/');
+            returnUrl = 'https%3A%2F%2Fliucol.github.io%2Fweixintest%2F';
+        console.log(returnUrl,'returnUrl');
 
         axios.get('https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid + '&redirect_uri=' + returnUrl + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect').then(function (response) {
             alert('请求成功');
