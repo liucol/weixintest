@@ -18,17 +18,26 @@
     function login() {
         alert('进入login');
         var appid = 'wx6d7e24649852fbcf',
-            returnUrl = 'https%3A%2F%2Fliucol.github.io%2Fweixintest%2F';
-        console.log(returnUrl,'returnUrl');
+            returnUrl = encodeURIComponent('https://liucol.github.io/weixintest/');
 
-        axios.get('https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid + '&redirect_uri=' + returnUrl + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect').then(function (response) {
-            alert('请求成功');
-            alert('响应response数据：' + response.errcode);
-        }).catch(function (error) {
-            alert('请求失败');
-            alert('错误提示errcode：' + error.errcode);
-            alert('错误提示errmsg：' + error.errmsg);
-        });
+        // axios.get('https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid + '&redirect_uri=' + returnUrl + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect').then(function (response) {
+        //     alert('请求成功');
+        //     alert('响应response数据：' + response.errcode);
+        // }).catch(function (error) {
+        //     alert('请求失败');
+        //     alert('错误提示errcode：' + error.errcode);
+        //     alert('错误提示errmsg：' + error.errmsg);
+        // });
+
+        $.ajax({
+            type: "GET",
+            url: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid + '&redirect_uri=' + returnUrl +'&response_type=code&scope=snsapi_base&state=123#wechat_redirect',
+            dataType: "json",
+            success: function (data) {
+                alert("请求响应");
+                alert(data);
+            }
+        })
     }
 
     login();
