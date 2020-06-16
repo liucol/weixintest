@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>测试微信授权登录</div>
+<button class="shareFriend">分享给朋友</button>
+<button class="shareAllFriends">分享给朋友</button>
+</body>
+<script src="static/axios.min.js"></script>
+<script src="static/jquery.min.js"></script>
+<script>
+    function login() {
+        alert('进入login');
+        var appid = 'wx6d7e24649852fbcf',
+            returnUrl = encodeURI('http://www.scnmgfw.org.cn:8010/server-tripartite/commoditys/index.html');
+
+        axios.get('https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid + '&redirect_uri=' + returnUrl + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect').then(function (response) {
+            alert('请求成功');
+            alert('响应response数据：' + response.errcode);
+        }).catch(function (error) {
+            alert('请求失败');
+            alert('错误提示errcode：' + error.errcode);
+            alert('错误提示errmsg：' + error.errmsg);
+        });
+    }
+
+    login();
+
+    //    分享给朋友
+    var dom = $('.shareFriend').eq(0);
+    dom.click(function () {
+        alert('分享给朋友，点击成功');
+        wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
+            alert('微信ready成功');
+            wx.updateAppMessageShareData({
+                title: '分享给朋友', // 分享标题
+                desc: '分享给朋友的描述', // 分享描述
+                //link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: '../static/logo.png', // 分享图标
+                success: function () {
+                    // 设置成功
+                    alert('分享给朋友成功');
+                }
+            })
+        });
+    });
+
+
+    //    分享到朋友圈
+    var Alldom = $('.shareAllFriends').eq(0);
+    Alldom.click(function () {
+        alert('分享到朋友圈，点击成功');
+        wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
+            wx.updateTimelineShareData({
+                title: '分享到朋友圈', // 分享标题
+                //link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: '../static/logo.png', // 分享图标
+                success: function () {
+                    // 设置成功
+                    alert('分享到朋友圈成功');
+                }
+            })
+        });
+    });
+</script>
+</html>
