@@ -36,6 +36,10 @@
             success: function (data) {
                 alert("请求响应");
                 alert(data);
+            },
+            error: function(res){
+               alert("错误响应");
+               alert(res);
             }
         })
     }
